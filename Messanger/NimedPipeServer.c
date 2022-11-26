@@ -5,9 +5,10 @@
 
 int main()
 {
-	system("chcp 1251");
+	system("chcp 1251>null");
+	LPSTR lpszPipiName = L"\\\\.\\pipe\\MyPipe1";
+
 	HANDLE hNamePipe;
-	LPSTR lpszPipiName = "gff";
 	DWORD size_buffer = SIZE_BUFFER;
 	LPWSTR buffer = (CHAR*)calloc(size_buffer, sizeof(CHAR));
 	char message[SIZE_BUFFER];
@@ -25,7 +26,7 @@ int main()
 			SIZE_BUFFER,
 			INFINITE,
 			NULL);
-		Connected = ConnectNamedPipe(hNamePipe, buffer, size_buffer, &actual_readen, NULL);
+		Connected = ConnectNamedPipe(hNamePipe, NULL);
 		if (Connected)
 		{
 			SeccessRead = ReadFile(hNamePipe, buffer, size_buffer, &actual_readen, NULL);
